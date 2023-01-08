@@ -3,7 +3,7 @@ import styles from './style.module.css';
 import ProjectForm from '../../project/ProjectForm';
 
 function NewProject() {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   function createPost(project) {
     project.cost = 0;
@@ -18,8 +18,10 @@ function NewProject() {
     })
     .then(res => res.json)
     .then(data => {
-      history('/projetos', {
-        message: 'Projeto criado com sucesso!',
+      navigate('/projetos', {
+        state: {
+          message: 'Projeto criado com sucesso!',
+        },
       });
     })
     .catch(err => console.log(err));
