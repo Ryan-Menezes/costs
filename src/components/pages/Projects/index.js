@@ -2,12 +2,14 @@ import styles from './style.module.css';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Container from '../../layout/Container';
+import Loading from '../../layout/Loading';
 import LinkButton from '../../layout/LinkButton';
 import Message from '../../layout/Message';
 import ProjectCard from '../../project/ProjectCard';
 
 function Projects() {
   const [projects, setProjects] = useState([]);
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   const location = useLocation();
   const message = location.state ? location.state.message : '';
@@ -22,6 +24,7 @@ function Projects() {
     .then(res => res.json())
     .then(data => {
       setProjects(data);
+      setRemoveLoading(true);
     })
     .catch(err => console.log(err));
   }, []);
@@ -43,6 +46,12 @@ function Projects() {
             category={project.category}
           />
         ))}
+
+        {!removeLoading && <Loading />}
+
+        {removeLoading && projects.length === 0 && (
+          <p>Não há projetos cadastrados!</p>
+        )}
       </Container>
     </div>
   );

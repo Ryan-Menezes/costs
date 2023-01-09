@@ -65,6 +65,17 @@
       "cost": 0,
       "services": [],
       "id": 6
+    },
+    {
+      "name": "Novo",
+      "budget": "4000",
+      "category": {
+        "id": "3",
+        "name": "Designer"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 7
     }
   ],
   "categories": [
